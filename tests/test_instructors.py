@@ -17,14 +17,19 @@ class UserDetail(pydantic.BaseModel):
 def test_instructor_userdetails():
 
     user: UserDetail = client.chat.completions.create(
-        model="gpt-3.5-turbo",
+        model="gpt-4-1106-preview",
         response_model=UserDetail,
         messages=[
-            {"role": "user", "content": "Extract Jason is 25 years old"},
+            {"role": "user", "content": "People call me Jason. I was born in year 1999."},
         ]
     )
 
     # Now we get a plain old python object! 
     assert user.name == "Jason"
-    assert user.age == 25
-    assert user.introduce() == "Hello I'm Jason and I'm 25 years old"
+    assert user.age == 24
+    assert user.introduce() == "Hello I'm Jason and I'm 24 years old"
+
+
+if __name__ == "__main__":
+
+    pass
